@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<style>
+    .zoom:hover {
+        cursor: pointer;
+    }
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de exercícios</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">Cálculos</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" href="#item4">Meio da página</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#item7">Final da página</a>
+              </li>
+            </form>
+          </div>
+        </div>
+      </nav>
+      
+
+    <h3 style="margin-top: 20px;">Exercício 1</h3>
+    <h4>Ele vai do número 0 até o número digitado pulando duas casas e no final vai fazer a soma de todos os números</h4>
+    <label for="valor1">Insira um intervalo</label>
+    <input type="number" id="valor1"><br><br>
+    <button type="button" onclick="ex1();">Gerar</button>
+    <h5 id="resultado1"></h5>
+    <h4 id="total1"></h4>
+    <hr>
+
+    <h3>Exercício 2</h3>
+    <h4>Conversor de Graus célsius para Graus Fahrenheit, e vice-versa!</h4>
+    <input type="number" id="c" style="width: 100px;" onchange="ex2('c');">
+    <label for="c">° C</label>
+    <br><br>
+    <input type="number" id="f" style="width: 100px;" onchange="ex2('f');">
+    <label for="f">° F</label>
+    <br><br>
+    <hr>
+
+    <h3>Exercício 3</h3>
+    <h4>Carrinho de compras de bebidas</h4>
+    <div id='prods'></div>
+    <input type="button" value="Adicionar produto" onclick="ex3();">
+    <h4 id="total2"></h4>
+    <hr>
+
+    <h3>Exercício 4</h3>
+    <h4>Calculo de gasto de gasolina</h4>
+    <div id="item4">
+    <h4>O carro faz 8km/Litro</h4>
+    <label for="km">Quilometragem: </label><input type="number" id="km">
+    <label for="valorComb">Valor do combustível: </label><input type="number" id="valorComb">
+    <br><br>
+    <input type="button" value="Calcular valor gasto" onclick="ex4();">
+    <h4 id="valorGasto"></h4>
+    <hr>
+    </div>
+
+    <h3>Exercício 5</h3>
+    <h4>Cálculo do valor do metro quadrado</h4>
+        <h4>O valor do m² é R$ 36,00</h4>
+        <label for="largura">Largura: </label><input type="number" id="largura">
+        <label for="comprimento">Comprimento: </label><input type="number" id="comprimento">
+        <br><br>
+        <input type="button" value="Calcular custo para assentar o piso" onclick="ex5();">
+        <h4 id="valorCusto5"></h4>
+        <hr>
+
+    <h3>Exercício 6</h3>
+    <h4>Cálculo do valor do Indice de massa corporal</h4>
+    <h4>Cálculo de IMC</h4>
+    <p>Selecione o sexo:</p>
+    <input type="radio" id="h" name="sexo" value="h" checked>
+    <label for="h">Homem</label><br>
+    <input type="radio" id="m" name="sexo" value="m">
+    <label for="m">Mulher</label>
+    <br><br>
+    <label for="alturaPessoa">Altura: </label><input type="number" id="alturaPessoa">
+    <br><br>
+    <input type="button" value="Calcular peso ideal" onclick="ex6();">
+    <h4 id="valorPesoIdeal"></h4>
+    <hr>
+
+    <h3>Exercício 7</h3>
+    <h4>Cálcula o menor e o maior valor conforme acrescido</h4>
+    <div id='item7'>
+        <input type="button" value="+" onclick="ex7();">
+    </div>
+    <h4 id="result7"></h4>
+    <hr>
+    <center><a href="#"><button type="button" class="btn btn-primary">Voltar ao inicio</button></a></center>
+
+</body>
+
+</html>
+
+<script>
+    function ex1() {
+        document.getElementById("resultado1").innerHTML = ""
+        var valor1 = parseInt(document.getElementById("valor1").value)
+        var total1 = 0
+        for (var index = 0; index < valor1 + 1; index++) {
+            if (index % 2 == 0) {
+                document.getElementById("resultado1").innerHTML += (document.getElementById("resultado1").innerHTML == '' ? '' : '-') + index
+                total1 += index
+            }
+        }
+        document.getElementById("total1").innerHTML = 'Soma Total: ' + total1
+    }
+
+    function ex2(qual) {
+        var c = parseInt(document.getElementById("c").value)
+        var f = parseInt(document.getElementById("f").value)
+        if (qual == 'c') {
+            document.getElementById("f").value = (c * 1.8) + 32
+        } else {
+            document.getElementById("c").value = (f - 32) / 1.8
+        }
+    }
+
+    var v1 = 0
+    var total
+    ex3()
+    function ex3() {
+
+        $('#prods').append(`<label for='produto'>Produto:</label>
+        <select name='produto' id='produto${v1}'>
+            <option value=0></option>
+            <option value=3.5>Pepsi - 3,50</option>
+            <option value=1.5>Agua - 1,50</option>
+            <option value=3>Guaraná - 3,00</option>
+            <option value=2>Dolly - 2,00</option>
+            <option value=2.5>H2O - 2,50</option>
+            <option value=3>Fanta - 3,00</option>
+        </select> Quantidade: <input type="number" id="qtd${v1}" style="width: 50px;" value="1"><br><br>`)
+        v1++
+
+        total = 0
+        for (let index = 0; index < v1; index++) {
+            total += Number(document.getElementById('qtd' + index).value) * Number(document.getElementById('produto' + index).value)
+        }
+        document.getElementById('total2').innerHTML = 'Total R$ ' + total
+    }
+
+    function ex4() {
+        var km = Number(document.getElementById('km').value)
+        var valorComb = Number(document.getElementById('valorComb').value)
+
+        document.getElementById('valorGasto').innerHTML = 'R$ ' + ((km / 8) * valorComb)
+    }
+
+    function ex5() {
+        var largura = Number(document.getElementById('largura').value)
+        var comprimento = Number(document.getElementById('comprimento').value)
+        var m2 = largura * comprimento
+        document.getElementById('valorCusto5').innerHTML = 'Custo para assentar o piso: R$ ' + (m2 * 36)
+    }
+
+    function ex6() {
+        var sexo = document.getElementsByName('sexo');
+        var altura = Number(document.getElementById('alturaPessoa').value)
+        var marcado
+        for (i in sexo) {
+            if (sexo[i].checked) {
+                marcado = sexo[i].value
+            }
+        }
+        document.getElementById('valorPesoIdeal').innerHTML = 'Seu peso ideal é '
+        if (marcado == 'h') {
+            document.getElementById('valorPesoIdeal').innerHTML += ((72.7 * altura) - 58).toFixed(2) + ' kg'
+        } else {
+            document.getElementById('valorPesoIdeal').innerHTML += ((62.1 * altura) - 44.7).toFixed(2) + ' kg'
+        }
+    }
+
+    var v2 = 0
+    var itens = []
+    ex7()
+    function ex7() {
+        $('#item7').append(`<input type="number" id="it${v2}" style="width: 40px; text-align: center;" onChange="resultEx7();">`)
+        itens.push(v2)
+        v2++
+    }
+
+    function resultEx7() {
+        valores = []
+        for (i in itens) {
+            if (document.getElementById('it' + i).value != '') valores.push(document.getElementById('it' + i).value)
+        }
+        document.getElementById('result7').innerHTML = `O menor valor é ${Math.min(...valores)} e o maior valor é ${Math.max(...valores)}`
+    }
+
+
+
+
+
+</script>
